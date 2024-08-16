@@ -12,10 +12,10 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name="users")
+@Table(name = "users")
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class User implements UserDetails {
 
     @Id
@@ -30,14 +30,9 @@ public class User implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
 
-    @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
-    @JoinTable(name = "authorities",joinColumns = @JoinColumn(name = "user_id"))
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @JoinTable(name = "authorities", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Set<Role> authorities;
-
-    // bir userin aldığı tüm rolleri ayrı bir listede tutuyoruz
-
-
-
 }
